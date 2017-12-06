@@ -1,0 +1,10 @@
+# Gradle files
+.gradle
+.gradle/
+build/
+
+# IntelliJ IDEA
+.idea
+*.iml
+*.iws
+/out/
