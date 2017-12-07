@@ -9,4 +9,9 @@ class CalcTest {
     fun sum() {
         assertEquals(3, Calc.sum(1, 2))
     }
+
+
+    fun subtrai(){
+
+    }
 }
