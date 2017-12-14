@@ -1,5 +1,33 @@
 # Kotlin
+---
 
+## 14/12/2017
+
+### Desafios:
+  - http://dojopuzzles.com/problemas/exibe/caixa-eletronico/
+  
+### Participantes: 
+  - andrech
+  - csoares
+  - eferraz
+  - guilhermel 
+  - jpimentel
+  - marcosvc
+  - patricio
+
+### Pontos positivos:
+  - Desafio parecia simples, mas foi interessante
+  - Dois novos participantes 
+  
+### Pontos negativos:
+  - Esquecimento do timer
+  - Tempo de 5min é pouco tempo
+  
+### Próximos passos:
+  - Enquanto estiver propondo solução não contabilizar o tempo
+  - Não induzir o piloto
+  - Melhorar atuação do co-piloto
+  
 --- 
 
 ## 07/12/2017
