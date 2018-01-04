@@ -1,5 +1,34 @@
 # Kotlin
+
 ---
+## 4/1/2018
+
+### Desafios:
+  - http://
+  
+### Participantes: 
+  - amandak
+  - csoares
+  - jpimentel
+  - lcamacho
+  - marcosvc
+  - vilmarbf
+
+### Pontos positivos:
+  - Três novos participantes 
+  - Piloto e copiloto foram mais participativos
+  - 7 minutos parece funcionar bem
+  - Foi decidio algoritmo antes do timer
+  
+### Pontos negativos:
+  - Conversas paralelas(devido só piloto e copoloto falarem)
+  - Participantes faltaram
+  - A definição da solução não foi completa(ainda perdemos tempo durante a codificação)
+
+### Próximos passos:
+  - Arrumar problemas para que possa explorar a linguagem
+  - Explorar mais as estruturas de dados e as caracteristicas da linguagem
+--- 
 
 ## 14/12/2017
 
