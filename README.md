@@ -1,6 +1,38 @@
 # Kotlin
 
 ---
+## 11/1/2018
+
+### Desafios:
+  - Jogo da velha
+  
+### Participantes: 
+  - amandak
+  - andrech
+  - ailtonb
+  - csoares
+  - enir
+  - fmoreno
+  - guilhermel
+  - jpimentel
+  - lcamacho
+  - marcosvc
+
+### Pontos positivos:
+  - Dois novos participante
+  - Trabalhamos um pouco mais a estrutura da linguagem
+  - o trabalho com o piloto e copiloto houve melhoras
+  
+### Pontos negativos:
+  - Desafio não foi concluido
+  - Fizemos a solução, porém não foi aplicada completamente porque os participantes não entederam a solução comum todo
+  - Faltou definir o escopo de cada classe
+  - A definição da solução não foi completa(ainda perdemos tempo durante a codificação)
+
+### Próximos passos:
+  - Explorar mais as estruturas de dados e as caracteristicas da linguagem
+  - dividir turma
+---
 ## 4/1/2018
 
 ### Desafios:
