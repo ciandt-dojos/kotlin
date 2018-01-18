@@ -1,6 +1,36 @@
 # Kotlin
 
 ---
+## 18/1/2018
+
+### Desafios:
+  - Batalha Naval
+  
+### Participantes: 
+  - amandak
+  - andrech
+  - fmoreno
+  - jpimentel
+  - lcamacho
+  - marcosvc
+  - patricio
+
+### Pontos positivos:
+  - Definiçao do projeto foi melhor que o anterior.
+  - Do fato da equipe ser menor, a equipe teve uma sinergia melhor.
+  - Aprendemos novas estruturas
+  
+### Pontos negativos:
+  - Nao seguimos a risca o TDD.
+  - Definicao do timebox da solucao foi de 50 minutos.
+  - Atencao ao termino do rodizio do Dojo
+  
+### Próximos passos:
+  - Concluir a soluçao
+  - Mais Foco
+  - Gerenciar o tempo do Dojo
+
+---
 ## 11/1/2018
 
 ### Desafios:
