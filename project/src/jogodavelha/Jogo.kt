@@ -1,6 +1,6 @@
 package jogodavelha
 
-class Tabuleiro {
+class JogoDaVelhaTabuleiro {
 
     var celulas = arrayOf("", "", "", "", "", "", "", "", "")
 
@@ -33,7 +33,7 @@ public enum class Status(val valor: String)
 
 class Jogo() {
 
-    val tabuleiro = Tabuleiro()
+    val tabuleiro = JogoDaVelhaTabuleiro()
     var status = Status.andamento
 
     var jogadasVencedoras = listOf(
@@ -64,13 +64,8 @@ class Jogo() {
                 return Status.velha
         }
 
-
+        return Status.andamento
     }
 
-    fun vencedor(): Status {
-
-    }
-
-    fun statusJogador()
 
 }
