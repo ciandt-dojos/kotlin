@@ -13,7 +13,7 @@ class BatalhaNavalTest {
         Assert.assertFalse(
                 tabuleiro.adiciona(
                         Tipo.ContraTorpedeiros,
-                        Posição('K', 2),
+                        Posicao('K', 2),
                         Orientacao.Horizontal
                 )
         )
@@ -27,7 +27,7 @@ class BatalhaNavalTest {
         Assert.assertFalse(
                 tabuleiro.adiciona(
                         Tipo.PortaAvioes,
-                        Posição('A', 8),
+                        Posicao('A', 8),
                         Orientacao.Horizontal
                 )
         )
@@ -41,7 +41,7 @@ class BatalhaNavalTest {
         Assert.assertTrue(
                 tabuleiro.adiciona(
                         Tipo.PortaAvioes,
-                        Posição('A', 0),
+                        Posicao('A', 0),
                         Orientacao.Vertical
                 )
         )
@@ -49,7 +49,7 @@ class BatalhaNavalTest {
         Assert.assertFalse(
                 tabuleiro.adiciona(
                         Tipo.PortaAvioes,
-                        Posição('A', 1),
+                        Posicao('A', 1),
                         Orientacao.Vertical
                 )
         )
@@ -63,7 +63,7 @@ class BatalhaNavalTest {
         Assert.assertTrue(
                 tabuleiro.adiciona(
                         Tipo.PortaAvioes,
-                        Posição('A', 0),
+                        Posicao('A', 0),
                         Orientacao.Vertical
                 )
         )
@@ -71,10 +71,37 @@ class BatalhaNavalTest {
         Assert.assertFalse(
                 tabuleiro.adiciona(
                         Tipo.NavioTanque,
-                        Posição('A', 0),
+                        Posicao('A', 0),
                         Orientacao.Vertical
                 )
         )
+    }
+
+    @Test
+    fun testTabuleiroVazio() {
+        val tabuleiro = Tabuleiro()
+        Assert.assertFalse(tabuleiro.preenchidoTabuleiro())
+    }
+
+    @Test
+    fun testTabuleiroCheio() {
+        val tabuleiro = Tabuleiro()
+
+        tabuleiro.adiciona(Tipo.Submarino, Posicao('A', 0), Orientacao.Horizontal)
+        tabuleiro.adiciona(Tipo.Submarino, Posicao('B', 0), Orientacao.Horizontal)
+        tabuleiro.adiciona(Tipo.Submarino, Posicao('C', 0), Orientacao.Horizontal)
+        tabuleiro.adiciona(Tipo.Submarino, Posicao('D', 0), Orientacao.Horizontal)
+
+        tabuleiro.adiciona(Tipo.ContraTorpedeiros, Posicao('E', 0), Orientacao.Horizontal)
+        tabuleiro.adiciona(Tipo.ContraTorpedeiros, Posicao('F', 0), Orientacao.Horizontal)
+        tabuleiro.adiciona(Tipo.ContraTorpedeiros, Posicao('G', 0), Orientacao.Horizontal)
+
+        tabuleiro.adiciona(Tipo.NavioTanque, Posicao('A', 4), Orientacao.Horizontal)
+        tabuleiro.adiciona(Tipo.NavioTanque, Posicao('B', 4), Orientacao.Horizontal)
+
+        tabuleiro.adiciona(Tipo.PortaAvioes, Posicao('C', 4), Orientacao.Horizontal)
+
+        Assert.assertTrue(tabuleiro.preenchidoTabuleiro())
     }
 }
 
