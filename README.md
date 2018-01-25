@@ -20,7 +20,7 @@
   - Tempo reduzido devido a falta do ambiente configurado;
 
 ### Próximos passos:
-  - Garantir que o ambiente (IDE, TV, etc) esteja configurado antes do início do Dojo;
+  - Garantir que o ambiente (IDE, TV, etc) esteja configurado antes do início do Dojo;
   - Finalizar o desafio da batalha naval;
  
 ## 18/1/2018
