@@ -1,6 +1,28 @@
 # Kotlin
 
 ---
+## 25/1/2018
+
+### Participantes: 
+  - ailtonb
+  - amandak
+  - andrech
+  - fmoreno
+  - lcamacho
+
+### Pontos positivos:
+  - Muito mais produtivo devido a quantidade de participantes;
+  - Levantamento do que deve ser feito separado em tarefas (ToDo/Done);
+  - Familiarização com a linguagem;
+
+### Pontos negativos:
+  - Falta do espelhamento da TV;
+  - Tempo reduzido devido a falta do ambiente configurado;
+
+### Próximos passos:
+  - Garantir que o ambiente (IDE, TV, etc) esteja configurado antes do início do Dojo;
+  - Finalizar o desafio da batalha naval;
+ 
 ## 18/1/2018
 
 ### Desafios:
