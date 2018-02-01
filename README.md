@@ -3,6 +3,31 @@
 ---
 ## 25/1/2018
 
+### Participantes:
+  - ailtonb
+  - amandak
+  - andrech
+  - fmoreno
+  - jpimentel
+  - lcamacho
+  - marcosvc
+
+### Pontos positivos:
+  - Familiarização com a linguagem;
+  - Levantamento do que deve ser feito separado em tarefas (ToDo/Done);
+
+### Pontos negativos:
+  - Não foi produtivo em relação ao ultimo
+  - Falta do espelhamento da TV;
+  - Tempo reduzido devido a falta do ambiente configurado;
+
+### Próximos passos:
+  - Garantir que o ambiente (IDE, TV, etc) esteja configurado antes do início do Dojo;
+  - Finalizar o desafio da batalha naval no Android;
+
+
+## 25/1/2018
+
 ### Participantes: 
   - ailtonb
   - amandak
