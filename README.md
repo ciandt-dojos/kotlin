@@ -31,26 +31,25 @@
                     Indicar a célula inicial e o jogo "desenha" o navio com as posições, seguindo a orientação
                     
         - Vir com a estrutura do projeto pronto.
-        
-        
-        
-  
-                
 
 ### Pontos positivos:
-  - 
+  - Planejamento de como será feito o projeto em Android conforme documentado acima
+  - Explicação de conceitos importantes para mobile (views)
 
 ### Pontos negativos:
-  - Não foi produtivo em relação ao último
   - Falta do espelhamento da TV;
   - Tempo reduzido devido a falta do ambiente configurado;
 
 ### Próximos passos:
   - Garantir que o ambiente (IDE, TV, etc) esteja configurado antes do início do Dojo;
   - Finalizar o desafio da batalha naval no Android;
+  - Montar ambiente de backup
+  - Definir uma tela a ser montada - desenhar tabuleiro das jogadas (já mostrando os enums)
+  - Ler sobre recycler view
+  - Verificar as imagens a serem utilizadas
 
 ---
-## 25/1/2018
+## 02/02/2018
 
 ### Participantes:
   - ailtonb
