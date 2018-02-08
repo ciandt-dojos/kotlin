@@ -1,5 +1,54 @@
 # Kotlin
 
+## 08/02/2018
+### Participantes:
+  - amandak
+  - andrech
+  - fmoreno
+  - jpimentel
+
+### Solução planejada para o app Android
+    - Início da estrutura para app Android
+        - Firebase
+             /Jogo
+                 /id_jogo 
+                    /tabuleiros
+                     /jogadas
+        - Layout
+            Recycler view para montar o tabuleiro
+            Cada tabuleiro será uma lista, navios e jogadas.
+                DiffUtils
+                Célula pode estar em 3 status - para quem está fazendo a jogada
+                    Padrão - não foi jogado
+                    Água - jogou e errou
+                    Bomba - Jogou e acertou
+                Célula pode estar em doi status - para quem está esperando a jogada do oponente
+                    Padrão - vazio (água)
+                    Ocupado - onde foi colocado o navio
+                Para preencher o tabuleiro
+                    Botão com a orientação - horizontal e vertical
+                    Selecionar o tipo de navio
+                    Indicar a célula inicial e o jogo "desenha" o navio com as posições, seguindo a orientação
+                    
+        - Vir com a estrutura do projeto pronto.
+        
+        
+        
+  
+                
+
+### Pontos positivos:
+  - 
+
+### Pontos negativos:
+  - Não foi produtivo em relação ao último
+  - Falta do espelhamento da TV;
+  - Tempo reduzido devido a falta do ambiente configurado;
+
+### Próximos passos:
+  - Garantir que o ambiente (IDE, TV, etc) esteja configurado antes do início do Dojo;
+  - Finalizar o desafio da batalha naval no Android;
+
 ---
 ## 25/1/2018
 
