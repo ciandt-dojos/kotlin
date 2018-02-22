@@ -14,7 +14,20 @@ class Tabuleiro() {
 
     fun existeNavio() = listaNavios.isNotEmpty()
 
+    fun preenchidoTabuleiro() : Boolean {
+        limites.forEach { limite ->
+            val qtdeNavios = listaNavios.filter { navio ->
+                navio.tipo == limite.key
 
+                }
+                    .count()
+            if (qtdeNavios < limite.value) {
+                return false
+            }
+        }
+
+        return true
+    }
 
     fun recebeJogada(posicao : Posicao) : Status {
 
@@ -36,6 +49,49 @@ class Tabuleiro() {
         return Status.Agua
     }
 
+    fun adiciona(tipo: Tipo, posicao: Posicao, orientacao: Orientacao): Boolean {
+
+
+        if (limites.containsKey(tipo) &&
+                listaNavios.filter { it.tipo == tipo }.size >=
+                        limites.get(tipo)!! ){
+
+            return false
+
+        }
+
+        if ((!intervaloColuna.contains(posicao.coluna))
+                || (!intervaloLinha.contains(posicao.linha))) {
+            return false
+        }
+
+        if (orientacao == Orientacao.Horizontal) {
+            if (!intervaloColuna.contains(posicao.coluna + tipo.tamanho)) {
+                return false
+            }
+
+        } else {
+            if (!intervaloLinha.contains(posicao.linha + tipo.tamanho)) {
+                return false
+            }
+        }
+
+        val navio = Navio(tipo, posicao, orientacao)
+
+        listaNavios.forEach { n ->
+            navio.posicoes.forEach { p ->
+                if (n.posicoes.contains(p)) {
+                    return false
+                }
+            }
+        }
+
+
+
+        listaNavios.add(navio)
+
+        return true
+    }
 
 
 }
