@@ -1,0 +1,5 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="item_tabuleiro_tamanho">32dp</dimen>
+    <dimen name="item_tabuleiro_espacamento">0.5dp</dimen>
+</resources>
