@@ -20,7 +20,7 @@ class JogoPresenter(context: Context) : JogoContract.Presenter {
 //        jogo.preencheTabuleiro(jogo.tabuleiro1)
     }
 
-    override fun atirar(indiceLinha: Int, indiceColuna: Int) {
+    override fun posicionar(indiceLinha: Int, indiceColuna: Int) {
 //        jogo.jogar(criarPosicao(indiceLinha, indiceColuna))
     }
 

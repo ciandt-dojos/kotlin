@@ -9,7 +9,7 @@ interface JogoContract {
     interface Presenter {
         val tamanhoTabuleiro: Int
 
-        fun atirar(indiceLinha: Int, indiceColuna: Int)
+        fun posicionar(indiceLinha: Int, indiceColuna: Int)
     }
 
     interface View {
