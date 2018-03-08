@@ -1,5 +1,54 @@
 # Kotlin
 
+## 08/03/2018
+## Participantes
+  - ailtonb
+  - amandak
+  - andrech
+  - fmoreno
+  - jpimentel
+### Solução planejada para o app Android
+- Início da estrutura para app Android
+        - Firebase
+             /Jogo
+                 /id_jogo 
+                    /tabuleiros
+                     /jogadas
+        - Layout
+            Recycler view para montar o tabuleiro
+            Cada tabuleiro será uma lista, navios e jogadas.
+                DiffUtils
+                Célula pode estar em 3 status - para quem está fazendo a jogada
+                    Padrão - não foi jogado
+                    Água - jogou e errou
+                    Bomba - Jogou e acertou
+                Célula pode estar em doi status - para quem está esperando a jogada do oponente
+                    Padrão - vazio (água)
+                    Ocupado - onde foi colocado o navio
+                Para preencher o tabuleiro
+                    Botão com a orientação - horizontal e vertical
+                    Selecionar o tipo de navio
+                    Indicar a célula inicial e o jogo "desenha" o navio com as posições, seguindo a orientação
+                    
+        - Vir com a estrutura do projeto pronto.
+
+### Próximos passos:
+- O bottom-sheet foi implementado, é mostrado quando seleciona uma célula, falta mudar a animação ou fundo da view transparente.
+- Buscar quantidade faltante dos navios
+- Adicionar o navio
+- Desabilitar o navio que já possui quantidade máxima
+- Validar a orientação e navio de acordo com a célula (quantidade disponível)
+
+### Pontos positivos:
+- o desenvolvimento andou
+- foi poíssvel ver mais sobre o front-end, pois antes só víamos back-end
+- estudo de uma estrutura - BottomSheet
+
+### Pontos negativos:
+- Atraso no início
+- Adaptador não funciona em todas as máquinas - projetar tela
+- Não teve lanche
+
 ## 08/02/2018
 ### Participantes:
   - amandak
