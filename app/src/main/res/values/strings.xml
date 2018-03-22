@@ -10,4 +10,5 @@
     <string name="confirmar">Confirmar</string>
     <string name="orientacao">Orientação</string>
     <string name="navio">Navio</string>
+    <string name="tabuleiro_posicao_invalida">Posiçao invalida.</string>
 </resources>

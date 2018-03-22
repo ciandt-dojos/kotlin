@@ -36,7 +36,7 @@ class TabuleiroModel {
         }
 
         if (orientacao == Orientacao.Horizontal) {
-            if (!intervaloColuna.contains(posicao.coluna + tipo.tamanho)) {
+            if (!intervaloColuna.contains(posicao.coluna + tipo.tamanho - 1)) {
                 return false
             }
 
