@@ -1,12 +1,15 @@
 # Kotlin
 
-## 08/03/2018
+
+
+## 22/03/2018
 ## Participantes
-  - ailtonb
   - amandak
   - andrech
   - fmoreno
   - jpimentel
+  - marcosvc
+  - charles
 ### Solução planejada para o app Android
 - Início da estrutura para app Android
         - Firebase
@@ -33,8 +36,7 @@
         - Vir com a estrutura do projeto pronto.
 
 ### Próximos passos:
-- O bottom-sheet foi implementado, é mostrado quando seleciona uma célula, falta mudar a animação ou fundo da view transparente.
-- Buscar quantidade faltante dos navios
+- O bottom-sheet foi implementado, falta colorir as celulas referente ao navio.
 - Adicionar o navio
 - Desabilitar o navio que já possui quantidade máxima
 - Validar a orientação e navio de acordo com a célula (quantidade disponível)
@@ -47,7 +49,7 @@
 ### Pontos negativos:
 - Atraso no início
 - Adaptador não funciona em todas as máquinas - projetar tela
-- Não teve lanche
+- Convesa paralela
 
 ## 08/02/2018
 ### Participantes:
