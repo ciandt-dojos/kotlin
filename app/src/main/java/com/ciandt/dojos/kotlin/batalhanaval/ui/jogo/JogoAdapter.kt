@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.ciandt.dojos.kotlin.batalhanaval.R
+import com.ciandt.dojos.kotlin.batalhanaval.data.Posicao
 
 /**
  * Author: andrech
@@ -13,6 +14,7 @@ class JogoAdapter(private val tamanhoTabuleiro: Int, private val listener: OnIte
         JogoViewHolder.OnItemClickListener {
 
     private val quantidadeCelulas: Int
+    private val posicoesMarcadas: MutableSet<Int> = mutableSetOf()
 
     init {
         quantidadeCelulas = Math.pow(tamanhoTabuleiro.toDouble(), 2.0).toInt()
@@ -32,11 +34,28 @@ class JogoAdapter(private val tamanhoTabuleiro: Int, private val listener: OnIte
 
     override fun onItemClick(position: Int) {
         listener?.let {
-            val linha = position / tamanhoTabuleiro
-            val coluna = position - (tamanhoTabuleiro * linha)
+            val result = posicaoToLinhaColuna(position)
 
-            it.onItemClick(linha, coluna)
+            it.onItemClick(result.first, result.second)
         }
+    }
+
+    fun posicaoToLinhaColuna(position: Int): Pair<Int, Int> {
+        val linha = position / tamanhoTabuleiro
+        val coluna = position - (tamanhoTabuleiro * linha)
+        return linha to coluna
+    }
+
+    fun linhaColunaToPosicao(linha: Int, coluna:Int): Int {
+        val posicao = (linha * tamanhoTabuleiro) + (coluna)
+        return posicao
+    }
+
+    fun addNavio(posicoes: List<Posicao>) {
+
+        print(posicoes)
+        //todo converter pra número
+
     }
 
     interface OnItemClickListener {

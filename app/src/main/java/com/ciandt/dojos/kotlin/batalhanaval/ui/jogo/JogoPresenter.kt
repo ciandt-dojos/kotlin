@@ -29,7 +29,9 @@ class JogoPresenter(context: Context) : JogoContract.Presenter {
 
     override fun posicionar(indiceLinha: Int, indiceColuna: Int, tipo: Tipo, orientacao: Orientacao) {
         val adicionado = tabuleiroModel.adiciona(tipo, Posicao.fromIndice(indiceLinha, indiceColuna), orientacao)
-        if (!adicionado) {
+        if (adicionado.first) {
+            view?.showNavioPosition(adicionado.second)
+        } else {
             view?.showPositionError()
         }
     }

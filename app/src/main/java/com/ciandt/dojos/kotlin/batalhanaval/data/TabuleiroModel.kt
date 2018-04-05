@@ -19,30 +19,30 @@ class TabuleiroModel {
             Tipo.NavioTanque to 2)
 
 
-    fun adiciona(tipo: Tipo, posicao: Posicao, orientacao: Orientacao): Boolean {
+    fun adiciona(tipo: Tipo, posicao: Posicao, orientacao: Orientacao): Pair<Boolean, List<Posicao>> {
 
 
         if (limites.containsKey(tipo) &&
                 listaNavios.filter { it.tipo == tipo }.size >=
                 limites.get(tipo)!!) {
 
-            return false
+            return false to emptyList()
 
         }
 
         if ((!intervaloColuna.contains(posicao.coluna))
                 || (!intervaloLinha.contains(posicao.linha))) {
-            return false
+            return false to emptyList()
         }
 
         if (orientacao == Orientacao.Horizontal) {
             if (!intervaloColuna.contains(posicao.coluna + tipo.tamanho - 1)) {
-                return false
+                return false to emptyList()
             }
 
         } else {
             if (!intervaloLinha.contains(posicao.linha + tipo.tamanho)) {
-                return false
+                return false to emptyList()
             }
         }
 
@@ -51,16 +51,14 @@ class TabuleiroModel {
         listaNavios.forEach { n ->
             navio.posicoes.forEach { p ->
                 if (n.posicoes.contains(p)) {
-                    return false
+                    return false to emptyList()
                 }
             }
         }
 
-
-
         listaNavios.add(navio)
 
-        return true
+        return true to navio.posicoes
     }
 
     fun preenchido(): Boolean {
@@ -78,9 +76,6 @@ class TabuleiroModel {
         return true
     }
 
-
-
-
     companion object {
         fun initAleatorio(): TabuleiroModel {
             val tabuleiroModel = TabuleiroModel()
@@ -97,7 +92,7 @@ class TabuleiroModel {
                             tabuleiroModel.intervaloColuna.elementAt(r.nextInt(tabuleiroModel.tamanhoColuna)))
                     r.nextInt(tabuleiroModel.tamanhoColuna)
 
-                    if (tabuleiroModel.adiciona(it, posicao, Orientacao.Horizontal)) {
+                    if (tabuleiroModel.adiciona(it, posicao, Orientacao.Horizontal).first) {
                         qtdOks++
                     }
 

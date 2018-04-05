@@ -27,5 +27,7 @@ class JogoViewHolder(layout: View, private val listener: OnItemClickListener?) :
 
     interface OnItemClickListener {
         fun onItemClick(position: Int)
+
     }
+
 }

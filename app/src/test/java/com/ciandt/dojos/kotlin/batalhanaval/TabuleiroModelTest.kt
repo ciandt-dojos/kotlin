@@ -19,7 +19,7 @@ class TabuleiroModelTest {
                         Tipo.ContraTorpedeiros,
                         Posicao('K', 2),
                         Orientacao.Horizontal
-                )
+                ).first
         )
     }
 
@@ -33,7 +33,7 @@ class TabuleiroModelTest {
                         Tipo.PortaAvioes,
                         Posicao('A', 8),
                         Orientacao.Horizontal
-                )
+                ).first
         )
     }
 
@@ -47,7 +47,7 @@ class TabuleiroModelTest {
                         Tipo.PortaAvioes,
                         Posicao('A', 0),
                         Orientacao.Vertical
-                )
+                ).first
         )
 
         Assert.assertFalse(
@@ -55,7 +55,7 @@ class TabuleiroModelTest {
                         Tipo.PortaAvioes,
                         Posicao('A', 1),
                         Orientacao.Vertical
-                )
+                ).first
         )
     }
 
@@ -69,7 +69,7 @@ class TabuleiroModelTest {
                         Tipo.PortaAvioes,
                         Posicao('A', 0),
                         Orientacao.Vertical
-                )
+                ).first
         )
 
         Assert.assertFalse(
@@ -77,7 +77,7 @@ class TabuleiroModelTest {
                         Tipo.NavioTanque,
                         Posicao('A', 0),
                         Orientacao.Vertical
-                )
+                ).first
         )
     }
 
