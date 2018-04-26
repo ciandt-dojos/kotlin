@@ -11,4 +11,7 @@
     <string name="orientacao">Orientação</string>
     <string name="navio">Navio</string>
     <string name="tabuleiro_posicao_invalida">Posiçao invalida.</string>
+    <string name="tabuleiro_limite_atingido">Quantidade máxima de %s atingida.</string>
+    <string name="tabuleiro_conflito_posicao">Posiçao conflitante.</string>
+
 </resources>

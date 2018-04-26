@@ -19,7 +19,8 @@ import kotlinx.android.synthetic.main.item_selecao_navio.*
 
 class JogoActivity : AppCompatActivity(), JogoContract.View, JogoAdapter.OnItemClickListener {
 
-    private lateinit var adapter : JogoAdapter
+
+    private lateinit var adapter: JogoAdapter
 
     override val presenter: JogoContract.Presenter by lazy {
         JogoPresenter(this)
@@ -104,6 +105,14 @@ class JogoActivity : AppCompatActivity(), JogoContract.View, JogoAdapter.OnItemC
 
     override fun showPositionError() {
         Snackbar.make(rootLayout, R.string.tabuleiro_posicao_invalida, Snackbar.LENGTH_LONG).show()
+    }
+
+    override fun showConflictError() {
+        Snackbar.make(rootLayout, R.string.tabuleiro_conflito_posicao, Snackbar.LENGTH_LONG).show()
+    }
+
+    override fun showLimitError(tipo: Tipo) {
+        Snackbar.make(rootLayout, getString(R.string.tabuleiro_limite_atingido,tipo.name), Snackbar.LENGTH_LONG).show()
     }
 
     override fun showNavioPosition(posicoes: List<Posicao>) {

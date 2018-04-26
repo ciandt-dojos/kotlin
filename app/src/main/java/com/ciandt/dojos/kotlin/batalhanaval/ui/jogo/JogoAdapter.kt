@@ -13,12 +13,8 @@ import com.ciandt.dojos.kotlin.batalhanaval.data.Posicao
 class JogoAdapter(private val tamanhoTabuleiro: Int, private val listener: OnItemClickListener? = null) : RecyclerView.Adapter<JogoViewHolder>(),
         JogoViewHolder.OnItemClickListener {
 
-    private val quantidadeCelulas: Int
-    private val posicoesMarcadas: MutableSet<Int> = mutableSetOf()
-
-    init {
-        quantidadeCelulas = Math.pow(tamanhoTabuleiro.toDouble(), 2.0).toInt()
-    }
+    private val quantidadeCelulas: Int = Math.pow(tamanhoTabuleiro.toDouble(), 2.0).toInt()
+    private val posicoesMarcadas: ArrayList<Posicao> = arrayListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): JogoViewHolder {
         val layout = LayoutInflater.from(parent?.context)
@@ -27,7 +23,9 @@ class JogoAdapter(private val tamanhoTabuleiro: Int, private val listener: OnIte
     }
 
     override fun onBindViewHolder(holder: JogoViewHolder?, position: Int) {
-        holder?.bind()
+        val linhaColuna = posicaoToLinhaColuna(position)
+        val p = Posicao.fromIndice(linhaColuna.first, linhaColuna.second)
+        holder?.bind(posicoesMarcadas.contains(p))
     }
 
     override fun getItemCount(): Int = quantidadeCelulas
@@ -52,9 +50,8 @@ class JogoAdapter(private val tamanhoTabuleiro: Int, private val listener: OnIte
     }
 
     fun addNavio(posicoes: List<Posicao>) {
-
-        print(posicoes)
-        //todo converter pra número
+        posicoesMarcadas.addAll(posicoes)
+        notifyDataSetChanged()
 
     }
 

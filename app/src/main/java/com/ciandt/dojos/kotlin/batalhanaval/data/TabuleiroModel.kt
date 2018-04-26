@@ -1,6 +1,6 @@
 package com.ciandt.dojos.kotlin.batalhanaval.data
 
-import java.util.*
+import java.util.Random
 
 /**
  * Author: andrech
@@ -11,7 +11,7 @@ class TabuleiroModel {
     val listaNavios = mutableListOf<Navio>()
     val intervaloLinha = 'A'..'J'
     val intervaloColuna = 0..9
-    val tamanhoColuna : Int = intervaloColuna.count()
+    val tamanhoColuna: Int = intervaloColuna.count()
 
 
     val limites = hashMapOf(Tipo.PortaAvioes to 1,
@@ -19,30 +19,30 @@ class TabuleiroModel {
             Tipo.NavioTanque to 2)
 
 
-    fun adiciona(tipo: Tipo, posicao: Posicao, orientacao: Orientacao): Pair<Boolean, List<Posicao>> {
+    fun adiciona(tipo: Tipo, posicao: Posicao, orientacao: Orientacao): Pair<Error?, List<Posicao>> {
 
 
         if (limites.containsKey(tipo) &&
                 listaNavios.filter { it.tipo == tipo }.size >=
-                limites.get(tipo)!!) {
+                        limites.get(tipo)!!) {
 
-            return false to emptyList()
+            return Error.LimitError to emptyList()
 
         }
 
         if ((!intervaloColuna.contains(posicao.coluna))
                 || (!intervaloLinha.contains(posicao.linha))) {
-            return false to emptyList()
+            return Error.PositionError to emptyList()
         }
 
         if (orientacao == Orientacao.Horizontal) {
             if (!intervaloColuna.contains(posicao.coluna + tipo.tamanho - 1)) {
-                return false to emptyList()
+                return Error.PositionError to emptyList()
             }
 
         } else {
             if (!intervaloLinha.contains(posicao.linha + tipo.tamanho)) {
-                return false to emptyList()
+                return Error.PositionError to emptyList()
             }
         }
 
@@ -51,14 +51,14 @@ class TabuleiroModel {
         listaNavios.forEach { n ->
             navio.posicoes.forEach { p ->
                 if (n.posicoes.contains(p)) {
-                    return false to emptyList()
+                    return Error.ConflictError to emptyList()
                 }
             }
         }
 
         listaNavios.add(navio)
 
-        return true to navio.posicoes
+        return null to navio.posicoes
     }
 
     fun preenchido(): Boolean {
@@ -92,7 +92,7 @@ class TabuleiroModel {
                             tabuleiroModel.intervaloColuna.elementAt(r.nextInt(tabuleiroModel.tamanhoColuna)))
                     r.nextInt(tabuleiroModel.tamanhoColuna)
 
-                    if (tabuleiroModel.adiciona(it, posicao, Orientacao.Horizontal).first) {
+                    if (tabuleiroModel.adiciona(it, posicao, Orientacao.Horizontal).first == null) {
                         qtdOks++
                     }
 

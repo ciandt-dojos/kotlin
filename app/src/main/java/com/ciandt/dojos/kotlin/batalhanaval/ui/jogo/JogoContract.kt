@@ -21,5 +21,7 @@ interface JogoContract {
         fun showNavioPosition(posicoes: List<Posicao>)
 
         val presenter: JogoContract.Presenter
+        fun showConflictError()
+        fun showLimitError(tipo: Tipo)
     }
 }

@@ -33,11 +33,10 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <RadioButton
-            android:id="@+id/idNavioTanque"
+            android:id="@+id/idSubmarino"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="@string/navio_tanque"/>
+            android:text="@string/submarino"/>
 
         <RadioButton
             android:id="@+id/idContraTorpedeiro"
@@ -46,16 +45,19 @@
             android:text="@string/contra_torpedeiro"/>
 
         <RadioButton
+            android:id="@+id/idNavioTanque"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/navio_tanque"/>
+
+        <RadioButton
             android:id="@+id/idPortaAviao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/porta_aviao"/>
 
-        <RadioButton
-            android:id="@+id/idSubmarino"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/submarino"/>
+
     </RadioGroup>
 
     <TextView

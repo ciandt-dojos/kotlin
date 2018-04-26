@@ -5,11 +5,11 @@ class Navio(val tipo: Tipo, val posicao: Posicao, val orientacao: Orientacao) {
 
     init {
         if (orientacao == Orientacao.Horizontal) {
-            for (i: Int in posicao.coluna..(posicao.coluna + tipo.tamanho)) {
+            for (i: Int in posicao.coluna..(posicao.coluna + tipo.tamanho - 1)) {
                 posicoes.add(Posicao(posicao.linha, i))
             }
         } else {
-            for (i: Char in posicao.linha..(posicao.linha + tipo.tamanho)) {
+            for (i: Char in posicao.linha..(posicao.linha + tipo.tamanho - 1)) {
                 posicoes.add(Posicao(i, posicao.coluna))
             }
         }
