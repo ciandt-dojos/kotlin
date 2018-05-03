@@ -19,7 +19,6 @@ import kotlinx.android.synthetic.main.item_selecao_navio.*
 
 class JogoActivity : AppCompatActivity(), JogoContract.View, JogoAdapter.OnItemClickListener {
 
-
     private lateinit var adapter: JogoAdapter
 
     override val presenter: JogoContract.Presenter by lazy {

@@ -1,5 +1,38 @@
 # Kotlin
-### 26/05/2018
+### 03/05/2018
+### Participantes:
+- amandak
+- ailtonb
+- fmoreno
+
+### Positivos:
+- O Jean não participou
+- Sem dispersões
+- Sem conversas paralelas
+- Lanchinho
+- Máquina boa
+- Não precisamos de adaptador hdmi
+- Mesmo sem o Jean, Itabirito e André, conseguimos andar com algo.
+
+### Negativos:
+- Como o Jean não participou, tivemos dúvidas referentes a arquitetura e delegação das classes.
+- Atraso por setup de nova máquina
+
+### Próximos passos:
+- Compilar o projeto!
+- Remover a peça: a lógica foi iniciada mas é necessário realizar as chamadas nas camadas.
+- Alterar o método de check ou criar um novo para retornar o navio.
+- Criar a view que confirma a remoção do Navio
+- Alterar o onclickItem para verificar se o navio existe, 
+e realizar a lógica para mostrar a adição ou remoção do navio
+
+- Mostrar indicador de quantidade de navios (restantes/total)
+- Botão de Start no jogo se tudo tiver posicionado
+- Vamos deixar desfazer/remover alguma peça? Desfazer a ultima parece bom
+- Ou limpar o tabuleiro e reposicionar
+
+
+### 26/04/2018
 ### Participantes:
 - amandak
 - ailtonb

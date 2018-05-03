@@ -38,6 +38,8 @@ class JogoAdapter(private val tamanhoTabuleiro: Int, private val listener: OnIte
         }
     }
 
+
+
     fun posicaoToLinhaColuna(position: Int): Pair<Int, Int> {
         val linha = position / tamanhoTabuleiro
         val coluna = position - (tamanhoTabuleiro * linha)

@@ -21,7 +21,6 @@ class TabuleiroModel {
 
     fun adiciona(tipo: Tipo, posicao: Posicao, orientacao: Orientacao): Pair<Error?, List<Posicao>> {
 
-
         if (limites.containsKey(tipo) &&
                 listaNavios.filter { it.tipo == tipo }.size >=
                         limites.get(tipo)!!) {
@@ -48,17 +47,29 @@ class TabuleiroModel {
 
         val navio = Navio(tipo, posicao, orientacao)
 
-        listaNavios.forEach { n ->
-            navio.posicoes.forEach { p ->
-                if (n.posicoes.contains(p)) {
-                    return Error.ConflictError to emptyList()
-                }
-            }
+        if(checkNavioExists(navio)) {
+            return Error.ConflictError to emptyList()
         }
 
         listaNavios.add(navio)
 
         return null to navio.posicoes
+    }
+
+    private fun checkNavioExists(navio: Navio):Boolean{
+        listaNavios.forEach { n ->
+            navio.posicoes.forEach { p ->
+                if (n.posicoes.contains(p)) {
+                    return true
+                }
+            }
+        }
+        return false
+    }
+
+    fun checkNavioExists(tipo: Tipo, posicao: Posicao, orientacao: Orientacao):Boolean{
+        val navio = Navio(tipo, posicao, orientacao)
+        return checkNavioExists(navio)
     }
 
     fun preenchido(): Boolean {
@@ -74,6 +85,10 @@ class TabuleiroModel {
         }
 
         return true
+    }
+
+    fun removerNavio(navio:Navio) {
+       listaNavios.remove(navio)
     }
 
     companion object {

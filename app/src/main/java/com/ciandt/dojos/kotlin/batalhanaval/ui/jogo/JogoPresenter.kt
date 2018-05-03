@@ -17,6 +17,14 @@ import com.ciandt.dojos.kotlin.batalhanaval.data.Tipo
  * Date: 21/02/18
  */
 class JogoPresenter(context: Context) : JogoContract.Presenter {
+    override fun removerNavio(indiceLinha: Int, indiceColuna: Int, tipo: Tipo) {
+       //return tabuleiroModel.removerNavio(indiceLinha, indiceColuna, tipo)
+    }
+
+    override fun checkNavioExists(indiceLinha: Int, indiceColuna: Int, tipo: Tipo): Boolean {
+        return tabuleiroModel.checkNavioExists(tipo,Posicao.fromIndice(indiceLinha, indiceColuna), Orientacao.Vertical)
+    }
+
     override var view: JogoContract.View? = null
 
     override val tamanhoTabuleiro: Int
