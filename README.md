@@ -1,12 +1,12 @@
 # Kotlin
 ### 26/05/2018
-###Participantes:
+### Participantes:
 - amandak
 - ailtonb
 - fmoreno
 - jpimentel
 
-###Positivos:
+### Positivos:
 - André não participará mais
 - Sem dispersões
 - Sem conversas paralelas
@@ -14,11 +14,11 @@
 - Máquina boa
 - Adaptador HDMI
 
-###Negativos:
+### Negativos:
 - Como não fizemos a ata anterior, gastamos tempo pra começar
 -
 
-###Próximos passos:
+### Próximos passos:
 - Mostrar indicador de quantidade de navios (restantes/total)
 - Botão de Start no jogo se tudo tiver posicionado
 - Vamos deixar desfazer/remover alguma peça? Desfazer a ultima parece bom
