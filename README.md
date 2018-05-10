@@ -1,5 +1,33 @@
 # Kotlin
-### 03/05/2018
+
+## 10/05/2018
+### Participantes:
+- amandak
+- ailtonb
+- fmoreno
+- jpimentel
+
+## Planejamento:
+- Especializar os métodos de click - onEmptyClick, onFilledClick - done
+- Criar dialog para remover o navio - done (pendente botão cancelar)
+- Count de navios restantes - done
+
+## Positivos:
+- Lanchinho
+- Pouco tempo de atraso
+- Finalizamos uma etapa \o/
+- 
+## Negativos:
+- Mad não espera o dojo acabar
+- Mad não libera o pc quando acaba o tempo
+- Teve conversa paralela
+
+## Próximos passos:
+- Criar o botão de jogar
+- Activity de Jogo
+- Marcar posições acertadas
+
+## 03/05/2018
 ### Participantes:
 - amandak
 - ailtonb
@@ -32,7 +60,7 @@ e realizar a lógica para mostrar a adição ou remoção do navio
 - Ou limpar o tabuleiro e reposicionar
 
 
-### 26/04/2018
+## 26/04/2018
 ### Participantes:
 - amandak
 - ailtonb

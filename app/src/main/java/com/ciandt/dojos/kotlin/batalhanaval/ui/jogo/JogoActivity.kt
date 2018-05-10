@@ -1,8 +1,10 @@
 package com.ciandt.dojos.kotlin.batalhanaval.ui.jogo
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.support.design.widget.BottomSheetBehavior
 import android.support.design.widget.Snackbar
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.GridLayoutManager
@@ -79,6 +81,35 @@ class JogoActivity : AppCompatActivity(), JogoContract.View, JogoAdapter.OnItemC
         }
     }
 
+    fun updateBottomSheet()
+    {
+       val quantidadeNavios = presenter.quantidadeNavios()
+
+        quantidadeNavios.forEach { tipo, pair ->
+            when(tipo){
+                Tipo.NavioTanque-> {
+                    idNavioTanque.isEnabled =  pair.first < pair.second
+                    idNavioTanque.text = getString(R.string.navio_tanque,pair.first, pair.second)
+                }
+                Tipo.ContraTorpedeiros -> {
+                    idContraTorpedeiro.isEnabled =  pair.first < pair.second
+                    idContraTorpedeiro.text = getString(R.string.contra_torpedeiro,pair.first, pair.second)
+                }
+                Tipo.Submarino -> {
+                    idSubmarino.isEnabled =  pair.first < pair.second
+                    idSubmarino.text = getString(R.string.submarino,pair.first, pair.second)
+                }
+
+                Tipo.PortaAvioes -> {
+                    idPortaAviao.isEnabled =  pair.first < pair.second
+                    idPortaAviao.text = getString(R.string.porta_aviao,pair.first, pair.second)
+                }
+            }
+        }
+
+
+    }
+
     private fun hideBottomSheet() {
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
         background.visibility = View.GONE
@@ -94,9 +125,29 @@ class JogoActivity : AppCompatActivity(), JogoContract.View, JogoAdapter.OnItemC
         }
     }
 
-    override fun onItemClick(indiceLinha: Int, indiceColuna: Int) {
+    override fun onItemFilledClick(indiceLinha: Int, indiceColuna: Int) {
         this.indiceLinha = indiceLinha
         this.indiceColuna = indiceColuna
+
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Deseja remover o navio?")
+
+        builder.setPositiveButton("ok", DialogInterface.OnClickListener { dialogInterface, i ->
+            val posicoes = presenter.removerNavio(indiceLinha, indiceColuna)
+            if (posicoes.isNotEmpty()) {
+                adapter.removeNavio(posicoes)
+            }
+        })
+
+        val dialog = builder.create()
+
+        dialog.show()
+    }
+
+    override fun onItemEmptyClick(indiceLinha: Int, indiceColuna: Int) {
+        this.indiceLinha = indiceLinha
+        this.indiceColuna = indiceColuna
+        updateBottomSheet()
 
         background.visibility = View.VISIBLE
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED

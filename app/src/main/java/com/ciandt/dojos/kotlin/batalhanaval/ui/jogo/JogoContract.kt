@@ -14,8 +14,9 @@ interface JogoContract {
         val tamanhoTabuleiro: Int
         var view: View?
         fun posicionar(indiceLinha: Int, indiceColuna: Int, tipo: Tipo, orientacao: Orientacao)
-        fun checkNavioExists(indiceLinha: Int, indiceColuna: Int, tipo: Tipo):
-        fun removerNavio(indiceLinha: Int, indiceColuna: Int, tipo: Tipo)
+        fun checkNavioExists(indiceLinha: Int, indiceColuna: Int, tipo: Tipo):Boolean
+        fun removerNavio(indiceLinha: Int, indiceColuna: Int): List<Posicao>
+        fun quantidadeNavios():Map<Tipo,Pair<Int,Int>>
     }
 
     interface View {

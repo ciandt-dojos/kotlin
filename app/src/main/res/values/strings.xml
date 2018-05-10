@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">Batalha Naval</string>
     <string name="action_settings">Settings</string>
-    <string name="submarino">Submarino</string>
-    <string name="porta_aviao">Porta Avião</string>
-    <string name="contra_torpedeiro">Contra Torpedeiro</string>
-    <string name="navio_tanque">Navio Tanque</string>
+    <string name="submarino">Submarino (%d/%d)</string>
+    <string name="porta_aviao">Porta Avião (%d/%d)</string>
+    <string name="contra_torpedeiro">Contra Torpedeiro (%d/%d)</string>
+    <string name="navio_tanque">Navio Tanque (%d/%d)</string>
     <string name="horizontal">Horizontal</string>
     <string name="vertical">Vertical</string>
     <string name="confirmar">Confirmar</string>

@@ -34,11 +34,13 @@ class JogoAdapter(private val tamanhoTabuleiro: Int, private val listener: OnIte
         listener?.let {
             val result = posicaoToLinhaColuna(position)
 
-            it.onItemClick(result.first, result.second)
+            if(posicoesMarcadas.contains(Posicao.fromIndice(result.first,result.second))){
+                it.onItemFilledClick(result.first,result.second)
+            }else {
+                it.onItemEmptyClick(result.first, result.second)
+            }
         }
     }
-
-
 
     fun posicaoToLinhaColuna(position: Int): Pair<Int, Int> {
         val linha = position / tamanhoTabuleiro
@@ -54,10 +56,15 @@ class JogoAdapter(private val tamanhoTabuleiro: Int, private val listener: OnIte
     fun addNavio(posicoes: List<Posicao>) {
         posicoesMarcadas.addAll(posicoes)
         notifyDataSetChanged()
+    }
 
+    fun removeNavio(posicoes: List<Posicao>){
+        posicoesMarcadas.removeAll(posicoes)
+        notifyDataSetChanged()
     }
 
     interface OnItemClickListener {
-        fun onItemClick(indiceLinha: Int, indiceColuna: Int)
+        fun onItemEmptyClick(indiceLinha: Int, indiceColuna: Int)
+        fun onItemFilledClick(indiceLinha: Int, indiceColuna: Int)
     }
 }

@@ -56,16 +56,7 @@ class TabuleiroModel {
         return null to navio.posicoes
     }
 
-    private fun checkNavioExists(navio: Navio):Boolean{
-        listaNavios.forEach { n ->
-            navio.posicoes.forEach { p ->
-                if (n.posicoes.contains(p)) {
-                    return true
-                }
-            }
-        }
-        return false
-    }
+
 
     fun checkNavioExists(tipo: Tipo, posicao: Posicao, orientacao: Orientacao):Boolean{
         val navio = Navio(tipo, posicao, orientacao)
@@ -87,9 +78,61 @@ class TabuleiroModel {
         return true
     }
 
-    fun removerNavio(navio:Navio) {
-       listaNavios.remove(navio)
+    fun removeNavioAt(posicao: Posicao): List<Posicao> {
+        // tanto faz o tipo ou orientacao
+        val navioGenerico = Navio(Tipo.Submarino, posicao, Orientacao.Vertical)
+
+        val navio = getNavio(navioGenerico)
+
+        navio?.let {
+            removerNavio(it)
+            return it.posicoes
+        }
+
+        return emptyList()
+
     }
+
+    fun getNavio(navioGenerico : Navio) : Navio? {
+        listaNavios.forEach { n ->
+            navioGenerico.posicoes.forEach { p ->
+                if (n.posicoes.contains(p)) {
+                    return n
+                }
+            }
+        }
+        return null
+    }
+
+    fun quantidadeNavios():Map<Tipo,Pair<Int,Int>>{
+        var quantidadeNavios = mutableMapOf<Tipo,Pair<Int,Int>>()
+
+        limites.forEach { limite ->
+            val qtdeNavios = listaNavios.filter { navio ->
+                navio.tipo == limite.key
+            }.count()
+
+            quantidadeNavios.put(limite.key, qtdeNavios to limite.value)
+        }
+        return quantidadeNavios
+    }
+
+    private fun removerNavio(navio:Navio) {
+        listaNavios.remove(navio)
+    }
+
+    private fun checkNavioExists(navio: Navio):Boolean{
+        listaNavios.forEach { n ->
+            navio.posicoes.forEach { p ->
+                if (n.posicoes.contains(p)) {
+                    return true
+                }
+            }
+        }
+        return false
+    }
+
+
 
     companion object {
         fun initAleatorio(): TabuleiroModel {
