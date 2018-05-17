@@ -17,6 +17,7 @@ interface JogoContract {
         fun checkNavioExists(indiceLinha: Int, indiceColuna: Int, tipo: Tipo):Boolean
         fun removerNavio(indiceLinha: Int, indiceColuna: Int): List<Posicao>
         fun quantidadeNavios():Map<Tipo,Pair<Int,Int>>
+        fun jogar()
     }
 
     interface View {

@@ -93,5 +93,10 @@ class Tabuleiro() {
         return true
     }
 
+    companion object {
+        fun buildTabuleiro(tabuleiroSetup: TabuleiroSetup):Tabuleiro{
+            return Tabuleiro().apply { listaNavios.addAll(tabuleiroSetup.listaNavios) }
+        }
+    }
 
 }

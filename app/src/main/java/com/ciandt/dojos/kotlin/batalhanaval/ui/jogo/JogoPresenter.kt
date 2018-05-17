@@ -1,22 +1,18 @@
 package com.ciandt.dojos.kotlin.batalhanaval.ui.jogo
 
 import android.content.Context
-import android.util.Log
-import android.widget.Switch
 import com.ciandt.dojos.kotlin.batalhanaval.R
-import com.ciandt.dojos.kotlin.batalhanaval.data.Error
-import com.ciandt.dojos.kotlin.batalhanaval.data.Jogo
-import com.ciandt.dojos.kotlin.batalhanaval.data.Orientacao
-import com.ciandt.dojos.kotlin.batalhanaval.data.Posicao
-import com.ciandt.dojos.kotlin.batalhanaval.data.Tabuleiro
-import com.ciandt.dojos.kotlin.batalhanaval.data.TabuleiroModel
-import com.ciandt.dojos.kotlin.batalhanaval.data.Tipo
+import com.ciandt.dojos.kotlin.batalhanaval.data.*
 
 /**
  * Author: andrech
  * Date: 21/02/18
  */
 class JogoPresenter(context: Context) : JogoContract.Presenter {
+    override fun jogar() {
+        val tabuleiro = Tabuleiro.buildTabuleiro(tabuleiroModel)
+        print("tabule")
+    }
 
     override fun checkNavioExists(indiceLinha: Int, indiceColuna: Int, tipo: Tipo): Boolean {
         return tabuleiroModel.checkNavioExists(tipo,Posicao.fromIndice(indiceLinha, indiceColuna), Orientacao.Vertical)
@@ -27,7 +23,7 @@ class JogoPresenter(context: Context) : JogoContract.Presenter {
     override val tamanhoTabuleiro: Int
 
     private val jogo = Jogo()
-    private val tabuleiroModel = TabuleiroModel()
+    private val tabuleiroModel = TabuleiroSetup()
 
     init {
         tamanhoTabuleiro = context.resources.getInteger(R.integer.tamanho_tabuleiro)

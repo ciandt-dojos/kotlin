@@ -6,7 +6,7 @@ import java.util.Random
  * Author: andrech
  * Date: 01/03/18
  */
-class TabuleiroModel {
+class TabuleiroSetup {
 
     val listaNavios = mutableListOf<Navio>()
     val intervaloLinha = 'A'..'J'
@@ -55,8 +55,6 @@ class TabuleiroModel {
 
         return null to navio.posicoes
     }
-
-
 
     fun checkNavioExists(tipo: Tipo, posicao: Posicao, orientacao: Orientacao):Boolean{
         val navio = Navio(tipo, posicao, orientacao)
@@ -132,12 +130,10 @@ class TabuleiroModel {
         return false
     }
 
-
-
     companion object {
-        fun initAleatorio(): TabuleiroModel {
-            val tabuleiroModel = TabuleiroModel()
-            val r = Random();
+        fun initAleatorio(): TabuleiroSetup {
+            val tabuleiroModel = TabuleiroSetup()
+            val r = Random()
 
             Tipo.values().forEach {
                 val limite = tabuleiroModel.limites[it] ?: 0

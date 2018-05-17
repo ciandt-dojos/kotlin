@@ -8,6 +8,8 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.GridLayoutManager
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.LinearLayout
 import com.ciandt.dojos.kotlin.batalhanaval.R
@@ -22,6 +24,31 @@ import kotlinx.android.synthetic.main.item_selecao_navio.*
 class JogoActivity : AppCompatActivity(), JogoContract.View, JogoAdapter.OnItemClickListener {
 
     private lateinit var adapter: JogoAdapter
+
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.activity_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            R.id.new_game -> {
+                presenter.jogar()
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        menu?.let {
+            it.findItem(R.id.new_game)?.isEnabled = presenter.quantidadeNavios()
+                    .filterValues {
+                        it.first != it.second
+                    }.isEmpty()
+        }
+        return super.onPrepareOptionsMenu(menu)
+    }
 
     override val presenter: JogoContract.Presenter by lazy {
         JogoPresenter(this)
@@ -81,30 +108,30 @@ class JogoActivity : AppCompatActivity(), JogoContract.View, JogoAdapter.OnItemC
         }
     }
 
-    fun updateBottomSheet()
-    {
-       val quantidadeNavios = presenter.quantidadeNavios()
+    fun updateBottomSheet() {
+        val quantidadeNavios = presenter.quantidadeNavios()
 
         quantidadeNavios.forEach { tipo, pair ->
-            when(tipo){
-                Tipo.NavioTanque-> {
-                    idNavioTanque.isEnabled =  pair.first < pair.second
-                    idNavioTanque.text = getString(R.string.navio_tanque,pair.first, pair.second)
+            when (tipo) {
+                Tipo.NavioTanque -> {
+                    idNavioTanque.isEnabled = pair.first < pair.second
+                    idNavioTanque.text = getString(R.string.navio_tanque, pair.first, pair.second)
                 }
                 Tipo.ContraTorpedeiros -> {
-                    idContraTorpedeiro.isEnabled =  pair.first < pair.second
-                    idContraTorpedeiro.text = getString(R.string.contra_torpedeiro,pair.first, pair.second)
+                    idContraTorpedeiro.isEnabled = pair.first < pair.second
+                    idContraTorpedeiro.text = getString(R.string.contra_torpedeiro, pair.first, pair.second)
                 }
                 Tipo.Submarino -> {
-                    idSubmarino.isEnabled =  pair.first < pair.second
-                    idSubmarino.text = getString(R.string.submarino,pair.first, pair.second)
+                    idSubmarino.isEnabled = pair.first < pair.second
+                    idSubmarino.text = getString(R.string.submarino, pair.first, pair.second)
                 }
 
                 Tipo.PortaAvioes -> {
-                    idPortaAviao.isEnabled =  pair.first < pair.second
-                    idPortaAviao.text = getString(R.string.porta_aviao,pair.first, pair.second)
+                    idPortaAviao.isEnabled = pair.first < pair.second
+                    idPortaAviao.text = getString(R.string.porta_aviao, pair.first, pair.second)
                 }
             }
+
         }
 
 
@@ -136,6 +163,8 @@ class JogoActivity : AppCompatActivity(), JogoContract.View, JogoAdapter.OnItemC
             val posicoes = presenter.removerNavio(indiceLinha, indiceColuna)
             if (posicoes.isNotEmpty()) {
                 adapter.removeNavio(posicoes)
+
+                invalidateOptionsMenu()
             }
         })
 
@@ -162,11 +191,13 @@ class JogoActivity : AppCompatActivity(), JogoContract.View, JogoAdapter.OnItemC
     }
 
     override fun showLimitError(tipo: Tipo) {
-        Snackbar.make(rootLayout, getString(R.string.tabuleiro_limite_atingido,tipo.name), Snackbar.LENGTH_LONG).show()
+        Snackbar.make(rootLayout, getString(R.string.tabuleiro_limite_atingido, tipo.name), Snackbar.LENGTH_LONG).show()
     }
 
     override fun showNavioPosition(posicoes: List<Posicao>) {
         adapter.addNavio(posicoes)
+
+        invalidateOptionsMenu()
     }
 
 }

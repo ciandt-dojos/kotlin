@@ -2,19 +2,19 @@ package com.ciandt.dojos.kotlin.batalhanaval
 
 import com.ciandt.dojos.kotlin.batalhanaval.data.Orientacao
 import com.ciandt.dojos.kotlin.batalhanaval.data.Posicao
-import com.ciandt.dojos.kotlin.batalhanaval.data.TabuleiroModel
+import com.ciandt.dojos.kotlin.batalhanaval.data.TabuleiroSetup
 import com.ciandt.dojos.kotlin.batalhanaval.data.Tipo
 import org.junit.Assert
 import org.junit.Test
 
-class TabuleiroModelTest {
+class TabuleiroSetupTest {
 
     @Test
     fun testForaDoTabuleiro() {
 
-        val tabuleiro = TabuleiroModel()
+        val tabuleiro = TabuleiroSetup()
 
-        Assert.assertFalse(
+        Assert.assertNotNull(
                 tabuleiro.adiciona(
                         Tipo.ContraTorpedeiros,
                         Posicao('K', 2),
@@ -26,9 +26,9 @@ class TabuleiroModelTest {
     @Test
     fun testParcialmenteForaDoTabuleiro() {
 
-        val tabuleiro = TabuleiroModel()
+        val tabuleiro = TabuleiroSetup()
 
-        Assert.assertFalse(
+        Assert.assertNotNull(
                 tabuleiro.adiciona(
                         Tipo.PortaAvioes,
                         Posicao('A', 8),
@@ -40,9 +40,9 @@ class TabuleiroModelTest {
     @Test
     fun testAddDoisPortaAvioes() {
 
-        val tabuleiro = TabuleiroModel()
+        val tabuleiro = TabuleiroSetup()
 
-        Assert.assertTrue(
+        Assert.assertNull(
                 tabuleiro.adiciona(
                         Tipo.PortaAvioes,
                         Posicao('A', 0),
@@ -50,7 +50,7 @@ class TabuleiroModelTest {
                 ).first
         )
 
-        Assert.assertFalse(
+        Assert.assertNotNull(
                 tabuleiro.adiciona(
                         Tipo.PortaAvioes,
                         Posicao('A', 1),
@@ -62,9 +62,9 @@ class TabuleiroModelTest {
     @Test
     fun testAddNavio() {
 
-        val tabuleiro = TabuleiroModel()
+        val tabuleiro = TabuleiroSetup()
 
-        Assert.assertTrue(
+        Assert.assertNull(
                 tabuleiro.adiciona(
                         Tipo.PortaAvioes,
                         Posicao('A', 0),
@@ -72,7 +72,7 @@ class TabuleiroModelTest {
                 ).first
         )
 
-        Assert.assertFalse(
+        Assert.assertNotNull(
                 tabuleiro.adiciona(
                         Tipo.NavioTanque,
                         Posicao('A', 0),
@@ -83,13 +83,13 @@ class TabuleiroModelTest {
 
     @Test
     fun testTabuleiroVazio() {
-        val tabuleiro = TabuleiroModel()
+        val tabuleiro = TabuleiroSetup()
         Assert.assertFalse(tabuleiro.preenchido())
     }
 
     @Test
     fun testInitAleatorio(){
-        val tabuleiro = TabuleiroModel.initAleatorio()
+        val tabuleiro = TabuleiroSetup.initAleatorio()
         Assert.assertTrue(tabuleiro.preenchido())
     }
 }

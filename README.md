@@ -1,5 +1,34 @@
 # Kotlin
 
+#17/05/2018
+### Participantes:
+- amandak
+- ailtonb
+- fmoreno
+- jpimentel
+
+## Planejamento:
+- Botão Jogar quando todas as peças estiverem ok
+- Gerar o tabuleiro do jogo ok
+- Gerar tabuleiro advs. ok
+- Desenhar tela do jogo
+
+## Positivos:
+- Lanchinho
+- Pouco tempo de atraso
+- Finalizamos uma etapa \o/
+
+## Negativos:
+- A Amanda não libera o pc
+- Teve conversa paralela
+
+
+## Próximos passos:
+- Desenhar tela do jogo
+- Alterar a regra relacionada a remover o navio.
+
+
+
 ## 10/05/2018
 ### Participantes:
 - amandak
@@ -16,7 +45,7 @@
 - Lanchinho
 - Pouco tempo de atraso
 - Finalizamos uma etapa \o/
-- 
+
 ## Negativos:
 - Mad não espera o dojo acabar
 - Mad não libera o pc quando acaba o tempo
