@@ -22,7 +22,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_tabuleiro"/>
+    <include layout="@layout/content_setup"/>
 
     <View
         android:id="@+id/background"

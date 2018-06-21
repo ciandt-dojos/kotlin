@@ -17,7 +17,7 @@ import com.ciandt.dojos.kotlin.batalhanaval.shared.Orientacao
 import com.ciandt.dojos.kotlin.batalhanaval.shared.Posicao
 import com.ciandt.dojos.kotlin.batalhanaval.shared.TipoNavio
 import kotlinx.android.synthetic.main.activity_setup.*
-import kotlinx.android.synthetic.main.content_tabuleiro.*
+import kotlinx.android.synthetic.main.content_setup.*
 import kotlinx.android.synthetic.main.item_selecao_navio.*
 
 

@@ -1,5 +1,21 @@
 # Kotlin
 
+#21/06/2018
+### Participantes:
+- ailtonb
+- fmoreno
+- jpimentel
+- lcamacho
+
+## Positivos:
+- Lanchinho
+- Sem dispersões
+- Aula de arquitetura
+
+## Negativos:
+- Amanda não veio
+- Começamos só 17h30min
+
 #17/05/2018
 ### Participantes:
 - amandak
@@ -142,7 +158,7 @@ e realizar a lógica para mostrar a adição ou remoção do navio
                     Ocupado - onde foi colocado o navio
                 Para preencher o tabuleiro
                     Botão com a orientação - horizontal e vertical
-                    Selecionar o tipo de navio
+                    Selecionar o tipoNavio de navio
                     Indicar a célula inicial e o jogo "desenha" o navio com as posições, seguindo a orientação
                     
         - Vir com a estrutura do projeto pronto.
