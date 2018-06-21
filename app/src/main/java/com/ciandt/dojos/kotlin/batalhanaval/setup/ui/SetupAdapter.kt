@@ -1,28 +1,22 @@
-package com.ciandt.dojos.kotlin.batalhanaval.ui.jogo
+package com.ciandt.dojos.kotlin.batalhanaval.setup.ui
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.ciandt.dojos.kotlin.batalhanaval.R
-import com.ciandt.dojos.kotlin.batalhanaval.data.Posicao
+import com.ciandt.dojos.kotlin.batalhanaval.shared.Posicao
 
-/**
- * Author: andrech
- * Date: 21/02/18
- */
-class JogoAdapter(private val tamanhoTabuleiro: Int, private val listener: OnItemClickListener? = null) : RecyclerView.Adapter<JogoViewHolder>(),
-        JogoViewHolder.OnItemClickListener {
+class SetupAdapter(private val tamanhoTabuleiro: Int, private val listener: OnItemClickListener? = null) : RecyclerView.Adapter<SetupViewHolder>(), SetupViewHolder.OnItemClickListener {
 
     private val quantidadeCelulas: Int = Math.pow(tamanhoTabuleiro.toDouble(), 2.0).toInt()
     private val posicoesMarcadas: ArrayList<Posicao> = arrayListOf()
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): JogoViewHolder {
-        val layout = LayoutInflater.from(parent?.context)
-                .inflate(R.layout.item_tabuleiro, parent, false)
-        return JogoViewHolder(layout, this)
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): SetupViewHolder {
+        val layout = LayoutInflater.from(parent?.context).inflate(R.layout.item_tabuleiro, parent, false)
+        return SetupViewHolder(layout, this)
     }
 
-    override fun onBindViewHolder(holder: JogoViewHolder?, position: Int) {
+    override fun onBindViewHolder(holder: SetupViewHolder?, position: Int) {
         val linhaColuna = posicaoToLinhaColuna(position)
         val p = Posicao.fromIndice(linhaColuna.first, linhaColuna.second)
         holder?.bind(posicoesMarcadas.contains(p))
@@ -34,9 +28,9 @@ class JogoAdapter(private val tamanhoTabuleiro: Int, private val listener: OnIte
         listener?.let {
             val result = posicaoToLinhaColuna(position)
 
-            if(posicoesMarcadas.contains(Posicao.fromIndice(result.first,result.second))){
-                it.onItemFilledClick(result.first,result.second)
-            }else {
+            if (posicoesMarcadas.contains(Posicao.fromIndice(result.first, result.second))) {
+                it.onItemFilledClick(result.first, result.second)
+            } else {
                 it.onItemEmptyClick(result.first, result.second)
             }
         }
@@ -48,7 +42,7 @@ class JogoAdapter(private val tamanhoTabuleiro: Int, private val listener: OnIte
         return linha to coluna
     }
 
-    fun linhaColunaToPosicao(linha: Int, coluna:Int): Int {
+    fun linhaColunaToPosicao(linha: Int, coluna: Int): Int {
         val posicao = (linha * tamanhoTabuleiro) + (coluna)
         return posicao
     }
@@ -58,7 +52,7 @@ class JogoAdapter(private val tamanhoTabuleiro: Int, private val listener: OnIte
         notifyDataSetChanged()
     }
 
-    fun removeNavio(posicoes: List<Posicao>){
+    fun removeNavio(posicoes: List<Posicao>) {
         posicoesMarcadas.removeAll(posicoes)
         notifyDataSetChanged()
     }

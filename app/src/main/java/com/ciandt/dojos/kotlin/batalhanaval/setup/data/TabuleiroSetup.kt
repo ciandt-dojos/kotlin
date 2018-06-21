@@ -1,12 +1,18 @@
-package com.ciandt.dojos.kotlin.batalhanaval.data
+package com.ciandt.dojos.kotlin.batalhanaval.setup.data
 
-import java.util.Random
+import com.ciandt.dojos.kotlin.batalhanaval.shared.Navio
+import com.ciandt.dojos.kotlin.batalhanaval.shared.Orientacao
+import com.ciandt.dojos.kotlin.batalhanaval.shared.Posicao
+import com.ciandt.dojos.kotlin.batalhanaval.shared.TipoNavio
+import java.util.*
 
-/**
- * Author: andrech
- * Date: 01/03/18
- */
 class TabuleiroSetup {
+
+    enum class Error {
+        PositionError,
+        LimitError,
+        ConflictError
+    }
 
     val listaNavios = mutableListOf<Navio>()
     val intervaloLinha = 'A'..'J'
@@ -14,16 +20,16 @@ class TabuleiroSetup {
     val tamanhoColuna: Int = intervaloColuna.count()
 
 
-    val limites = hashMapOf(Tipo.PortaAvioes to 1,
-            Tipo.Submarino to 4, Tipo.ContraTorpedeiros to 3,
-            Tipo.NavioTanque to 2)
+    val limites = hashMapOf(TipoNavio.PortaAvioes to 1,
+            TipoNavio.Submarino to 4, TipoNavio.ContraTorpedeiros to 3,
+            TipoNavio.NavioTanque to 2)
 
 
-    fun adiciona(tipo: Tipo, posicao: Posicao, orientacao: Orientacao): Pair<Error?, List<Posicao>> {
+    fun adiciona(tipoNavio: TipoNavio, posicao: Posicao, orientacao: Orientacao): Pair<Error?, List<Posicao>> {
 
-        if (limites.containsKey(tipo) &&
-                listaNavios.filter { it.tipo == tipo }.size >=
-                        limites.get(tipo)!!) {
+        if (limites.containsKey(tipoNavio) &&
+                listaNavios.filter { it.tipoNavio == tipoNavio }.size >=
+                        limites.get(tipoNavio)!!) {
 
             return Error.LimitError to emptyList()
 
@@ -35,19 +41,19 @@ class TabuleiroSetup {
         }
 
         if (orientacao == Orientacao.Horizontal) {
-            if (!intervaloColuna.contains(posicao.coluna + tipo.tamanho - 1)) {
+            if (!intervaloColuna.contains(posicao.coluna + tipoNavio.tamanho - 1)) {
                 return Error.PositionError to emptyList()
             }
 
         } else {
-            if (!intervaloLinha.contains(posicao.linha + tipo.tamanho)) {
+            if (!intervaloLinha.contains(posicao.linha + tipoNavio.tamanho)) {
                 return Error.PositionError to emptyList()
             }
         }
 
-        val navio = Navio(tipo, posicao, orientacao)
+        val navio = Navio(tipoNavio, posicao, orientacao)
 
-        if(checkNavioExists(navio)) {
+        if (checkNavioExists(navio)) {
             return Error.ConflictError to emptyList()
         }
 
@@ -56,15 +62,15 @@ class TabuleiroSetup {
         return null to navio.posicoes
     }
 
-    fun checkNavioExists(tipo: Tipo, posicao: Posicao, orientacao: Orientacao):Boolean{
-        val navio = Navio(tipo, posicao, orientacao)
+    fun checkNavioExists(tipoNavio: TipoNavio, posicao: Posicao, orientacao: Orientacao): Boolean {
+        val navio = Navio(tipoNavio, posicao, orientacao)
         return checkNavioExists(navio)
     }
 
     fun preenchido(): Boolean {
         limites.forEach { limite ->
             val qtdeNavios = listaNavios.filter { navio ->
-                navio.tipo == limite.key
+                navio.tipoNavio == limite.key
 
             }
                     .count()
@@ -77,8 +83,8 @@ class TabuleiroSetup {
     }
 
     fun removeNavioAt(posicao: Posicao): List<Posicao> {
-        // tanto faz o tipo ou orientacao
-        val navioGenerico = Navio(Tipo.Submarino, posicao, Orientacao.Vertical)
+        // tanto faz o tipoNavio ou orientacao
+        val navioGenerico = Navio(TipoNavio.Submarino, posicao, Orientacao.Vertical)
 
         val navio = getNavio(navioGenerico)
 
@@ -91,7 +97,7 @@ class TabuleiroSetup {
 
     }
 
-    fun getNavio(navioGenerico : Navio) : Navio? {
+    fun getNavio(navioGenerico: Navio): Navio? {
         listaNavios.forEach { n ->
             navioGenerico.posicoes.forEach { p ->
                 if (n.posicoes.contains(p)) {
@@ -102,12 +108,12 @@ class TabuleiroSetup {
         return null
     }
 
-    fun quantidadeNavios():Map<Tipo,Pair<Int,Int>>{
-        var quantidadeNavios = mutableMapOf<Tipo,Pair<Int,Int>>()
+    fun quantidadeNavios(): Map<TipoNavio, Pair<Int, Int>> {
+        var quantidadeNavios = mutableMapOf<TipoNavio, Pair<Int, Int>>()
 
         limites.forEach { limite ->
             val qtdeNavios = listaNavios.filter { navio ->
-                navio.tipo == limite.key
+                navio.tipoNavio == limite.key
             }.count()
 
             quantidadeNavios.put(limite.key, qtdeNavios to limite.value)
@@ -115,11 +121,11 @@ class TabuleiroSetup {
         return quantidadeNavios
     }
 
-    private fun removerNavio(navio:Navio) {
+    private fun removerNavio(navio: Navio) {
         listaNavios.remove(navio)
     }
 
-    private fun checkNavioExists(navio: Navio):Boolean{
+    private fun checkNavioExists(navio: Navio): Boolean {
         listaNavios.forEach { n ->
             navio.posicoes.forEach { p ->
                 if (n.posicoes.contains(p)) {
@@ -135,7 +141,7 @@ class TabuleiroSetup {
             val tabuleiroModel = TabuleiroSetup()
             val r = Random()
 
-            Tipo.values().forEach {
+            TipoNavio.values().forEach {
                 val limite = tabuleiroModel.limites[it] ?: 0
                 var qtdOks = 0
                 var posicao: Posicao

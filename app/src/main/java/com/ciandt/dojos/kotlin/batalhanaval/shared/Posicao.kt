@@ -1,7 +1,6 @@
-package com.ciandt.dojos.kotlin.batalhanaval.data
+package com.ciandt.dojos.kotlin.batalhanaval.shared
 
 data class Posicao(val linha: Char, val coluna: Int) {
-
     companion object {
         fun fromIndice(linha: Int, coluna: Int): Posicao {
             val chars = 'A'..'J'

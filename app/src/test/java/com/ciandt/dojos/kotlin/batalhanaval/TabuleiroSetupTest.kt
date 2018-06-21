@@ -1,9 +1,6 @@
 package com.ciandt.dojos.kotlin.batalhanaval
 
-import com.ciandt.dojos.kotlin.batalhanaval.data.Orientacao
-import com.ciandt.dojos.kotlin.batalhanaval.data.Posicao
-import com.ciandt.dojos.kotlin.batalhanaval.data.TabuleiroSetup
-import com.ciandt.dojos.kotlin.batalhanaval.data.Tipo
+import com.ciandt.dojos.kotlin.batalhanaval.shared.TipoNavio
 import org.junit.Assert
 import org.junit.Test
 
@@ -16,7 +13,7 @@ class TabuleiroSetupTest {
 
         Assert.assertNotNull(
                 tabuleiro.adiciona(
-                        Tipo.ContraTorpedeiros,
+                        TipoNavio.ContraTorpedeiros,
                         Posicao('K', 2),
                         Orientacao.Horizontal
                 ).first
@@ -30,7 +27,7 @@ class TabuleiroSetupTest {
 
         Assert.assertNotNull(
                 tabuleiro.adiciona(
-                        Tipo.PortaAvioes,
+                        TipoNavio.PortaAvioes,
                         Posicao('A', 8),
                         Orientacao.Horizontal
                 ).first
@@ -44,7 +41,7 @@ class TabuleiroSetupTest {
 
         Assert.assertNull(
                 tabuleiro.adiciona(
-                        Tipo.PortaAvioes,
+                        TipoNavio.PortaAvioes,
                         Posicao('A', 0),
                         Orientacao.Vertical
                 ).first
@@ -52,7 +49,7 @@ class TabuleiroSetupTest {
 
         Assert.assertNotNull(
                 tabuleiro.adiciona(
-                        Tipo.PortaAvioes,
+                        TipoNavio.PortaAvioes,
                         Posicao('A', 1),
                         Orientacao.Vertical
                 ).first
@@ -66,7 +63,7 @@ class TabuleiroSetupTest {
 
         Assert.assertNull(
                 tabuleiro.adiciona(
-                        Tipo.PortaAvioes,
+                        TipoNavio.PortaAvioes,
                         Posicao('A', 0),
                         Orientacao.Vertical
                 ).first
@@ -74,7 +71,7 @@ class TabuleiroSetupTest {
 
         Assert.assertNotNull(
                 tabuleiro.adiciona(
-                        Tipo.NavioTanque,
+                        TipoNavio.NavioTanque,
                         Posicao('A', 0),
                         Orientacao.Vertical
                 ).first

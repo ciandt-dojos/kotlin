@@ -10,7 +10,7 @@
 //    fun testExisteNavio() {
 //        val tabuleiro = Tabuleiro()
 //
-//        tabuleiro.adiciona(Tipo.Submarino, Posicao('A', 0), Orientacao.Horizontal)
+//        tabuleiro.adiciona(TipoNavio.Submarino, Posicao('A', 0), Orientacao.Horizontal)
 //
 //        Assert.assertTrue(tabuleiro.existeNavio())
 //    }
@@ -19,7 +19,7 @@
 //    fun testTabuleiro1Vencedor(){
 //
 //        val jogo = Jogo()
-//        jogo.tabuleiro1.adiciona(Tipo.PortaAvioes, Posicao('A', 3), Orientacao.Horizontal);
+//        jogo.tabuleiro1.adiciona(TipoNavio.PortaAvioes, Posicao('A', 3), Orientacao.Horizontal);
 //
 //        Assert.assertEquals(jogo.exibirVencedor(),1);
 //    }
@@ -32,8 +32,8 @@
 //        val jogo = Jogo(tabuleiro, tabuleiro);
 //
 //
-////        jogo.tabuleiro1.adiciona(Tipo.Submarino, Posicao('A', 3), Orientacao.Horizontal)
-////        jogo.tabuleiro2.adiciona(Tipo.Submarino, Posicao('C', 1), Orientacao.Horizontal)
+////        jogo.tabuleiro1.adiciona(TipoNavio.Submarino, Posicao('A', 3), Orientacao.Horizontal)
+////        jogo.tabuleiro2.adiciona(TipoNavio.Submarino, Posicao('C', 1), Orientacao.Horizontal)
 //
 ////        jogo.jogar(Posicao('B', 6))
 ////        jogo.jogar(Posicao('A', 3))
@@ -127,19 +127,19 @@
 //    fun preencheTabuleiro(): Tabuleiro {
 //        val tabuleiro = Tabuleiro()
 //
-//        tabuleiro.adiciona(Tipo.Submarino, Posicao('A', 0), Orientacao.Horizontal)
-//        tabuleiro.adiciona(Tipo.Submarino, Posicao('B', 0), Orientacao.Horizontal)
-//        tabuleiro.adiciona(Tipo.Submarino, Posicao('C', 0), Orientacao.Horizontal)
-//        tabuleiro.adiciona(Tipo.Submarino, Posicao('D', 0), Orientacao.Horizontal)
+//        tabuleiro.adiciona(TipoNavio.Submarino, Posicao('A', 0), Orientacao.Horizontal)
+//        tabuleiro.adiciona(TipoNavio.Submarino, Posicao('B', 0), Orientacao.Horizontal)
+//        tabuleiro.adiciona(TipoNavio.Submarino, Posicao('C', 0), Orientacao.Horizontal)
+//        tabuleiro.adiciona(TipoNavio.Submarino, Posicao('D', 0), Orientacao.Horizontal)
 //
-//        tabuleiro.adiciona(Tipo.ContraTorpedeiros, Posicao('E', 0), Orientacao.Horizontal)
-//        tabuleiro.adiciona(Tipo.ContraTorpedeiros, Posicao('F', 0), Orientacao.Horizontal)
-//        tabuleiro.adiciona(Tipo.ContraTorpedeiros, Posicao('G', 0), Orientacao.Horizontal)
+//        tabuleiro.adiciona(TipoNavio.ContraTorpedeiros, Posicao('E', 0), Orientacao.Horizontal)
+//        tabuleiro.adiciona(TipoNavio.ContraTorpedeiros, Posicao('F', 0), Orientacao.Horizontal)
+//        tabuleiro.adiciona(TipoNavio.ContraTorpedeiros, Posicao('G', 0), Orientacao.Horizontal)
 //
-//        tabuleiro.adiciona(Tipo.NavioTanque, Posicao('A', 4), Orientacao.Horizontal)
-//        tabuleiro.adiciona(Tipo.NavioTanque, Posicao('B', 4), Orientacao.Horizontal)
+//        tabuleiro.adiciona(TipoNavio.NavioTanque, Posicao('A', 4), Orientacao.Horizontal)
+//        tabuleiro.adiciona(TipoNavio.NavioTanque, Posicao('B', 4), Orientacao.Horizontal)
 //
-//        tabuleiro.adiciona(Tipo.PortaAvioes, Posicao('C', 4), Orientacao.Horizontal)
+//        tabuleiro.adiciona(TipoNavio.PortaAvioes, Posicao('C', 4), Orientacao.Horizontal)
 //        return tabuleiro
 //    }
 //}

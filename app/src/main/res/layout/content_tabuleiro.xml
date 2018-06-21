@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.ciandt.dojos.kotlin.batalhanaval.ui.jogo.JogoActivity"
-    tools:showIn="@layout/activity_tabuleiro">
+    tools:context="com.ciandt.dojos.kotlin.batalhanaval.setup.ui.SetupActivity"
+    tools:showIn="@layout/activity_setup">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/tabuleiroRecyclerView"

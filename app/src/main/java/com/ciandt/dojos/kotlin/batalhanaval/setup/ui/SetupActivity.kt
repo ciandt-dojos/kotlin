@@ -1,4 +1,4 @@
-package com.ciandt.dojos.kotlin.batalhanaval.ui.jogo
+package com.ciandt.dojos.kotlin.batalhanaval.setup.ui
 
 import android.content.DialogInterface
 import android.os.Bundle
@@ -13,21 +13,26 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.LinearLayout
 import com.ciandt.dojos.kotlin.batalhanaval.R
-import com.ciandt.dojos.kotlin.batalhanaval.data.Orientacao
-import com.ciandt.dojos.kotlin.batalhanaval.data.Posicao
-import com.ciandt.dojos.kotlin.batalhanaval.data.Tipo
-import kotlinx.android.synthetic.main.activity_tabuleiro.*
+import com.ciandt.dojos.kotlin.batalhanaval.shared.Orientacao
+import com.ciandt.dojos.kotlin.batalhanaval.shared.Posicao
+import com.ciandt.dojos.kotlin.batalhanaval.shared.TipoNavio
+import kotlinx.android.synthetic.main.activity_setup.*
 import kotlinx.android.synthetic.main.content_tabuleiro.*
 import kotlinx.android.synthetic.main.item_selecao_navio.*
 
 
-class JogoActivity : AppCompatActivity(), JogoContract.View, JogoAdapter.OnItemClickListener {
+class SetupActivity : AppCompatActivity(), SetupContract.View, SetupAdapter.OnItemClickListener {
 
-    private lateinit var adapter: JogoAdapter
+    private val presenter: SetupContract.Presenter by lazy {
+        SetupPresenter()
+    }
 
+    private lateinit var adapter: SetupAdapter
+
+    private var newGameEnabled = false
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.activity_menu, menu)
+        menuInflater.inflate(R.menu.menu_setup, menu)
         return true
     }
 
@@ -42,21 +47,15 @@ class JogoActivity : AppCompatActivity(), JogoContract.View, JogoAdapter.OnItemC
 
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
         menu?.let {
-            it.findItem(R.id.new_game)?.isEnabled = presenter.quantidadeNavios()
-                    .filterValues {
-                        it.first != it.second
-                    }.isEmpty()
+            it.findItem(R.id.new_game)?.isEnabled = newGameEnabled
         }
         return super.onPrepareOptionsMenu(menu)
     }
 
-    override val presenter: JogoContract.Presenter by lazy {
-        JogoPresenter(this)
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_tabuleiro)
+        setContentView(R.layout.activity_setup)
         setSupportActionBar(toolbar)
 
         setupRecyclerView()
@@ -65,12 +64,12 @@ class JogoActivity : AppCompatActivity(), JogoContract.View, JogoAdapter.OnItemC
 
     override fun onStart() {
         super.onStart()
-        presenter.view = this
+        presenter.setView(this)
     }
 
     override fun onStop() {
         super.onStop()
-        presenter.view = null
+        presenter.setView(null)
     }
 
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<LinearLayout>
@@ -83,10 +82,10 @@ class JogoActivity : AppCompatActivity(), JogoContract.View, JogoAdapter.OnItemC
 
         idConfirmar.setOnClickListener {
             val tipoNavio = when (tipoNavioRadioGroup.checkedRadioButtonId) {
-                R.id.idNavioTanque -> Tipo.NavioTanque
-                R.id.idSubmarino -> Tipo.Submarino
-                R.id.idPortaAviao -> Tipo.PortaAvioes
-                R.id.idContraTorpedeiro -> Tipo.ContraTorpedeiros
+                R.id.idNavioTanque -> TipoNavio.NavioTanque
+                R.id.idSubmarino -> TipoNavio.Submarino
+                R.id.idPortaAviao -> TipoNavio.PortaAvioes
+                R.id.idContraTorpedeiro -> TipoNavio.ContraTorpedeiros
                 else -> throw IllegalStateException("Navio inválido")
             }
 
@@ -97,7 +96,7 @@ class JogoActivity : AppCompatActivity(), JogoContract.View, JogoAdapter.OnItemC
             }
 
             if (indiceLinha != -1 && indiceColuna != -1) {
-                presenter.posicionar(indiceLinha, indiceColuna, tipoNavio, orientacao)
+                presenter.adicionarNavio(indiceLinha, indiceColuna, tipoNavio, orientacao)
             }
 
             hideBottomSheet()
@@ -108,33 +107,31 @@ class JogoActivity : AppCompatActivity(), JogoContract.View, JogoAdapter.OnItemC
         }
     }
 
-    fun updateBottomSheet() {
-        val quantidadeNavios = presenter.quantidadeNavios()
+    override fun setNaviosDisponiveis(naviosDisponiveis: Map<TipoNavio, Pair<Int, Int>>) {
 
-        quantidadeNavios.forEach { tipo, pair ->
+        newGameEnabled = naviosDisponiveis.filterValues { it.first != it.second }.isEmpty()
+
+        naviosDisponiveis.forEach { (tipo, pair) ->
             when (tipo) {
-                Tipo.NavioTanque -> {
+                TipoNavio.NavioTanque -> {
                     idNavioTanque.isEnabled = pair.first < pair.second
                     idNavioTanque.text = getString(R.string.navio_tanque, pair.first, pair.second)
                 }
-                Tipo.ContraTorpedeiros -> {
+                TipoNavio.ContraTorpedeiros -> {
                     idContraTorpedeiro.isEnabled = pair.first < pair.second
                     idContraTorpedeiro.text = getString(R.string.contra_torpedeiro, pair.first, pair.second)
                 }
-                Tipo.Submarino -> {
+                TipoNavio.Submarino -> {
                     idSubmarino.isEnabled = pair.first < pair.second
                     idSubmarino.text = getString(R.string.submarino, pair.first, pair.second)
                 }
 
-                Tipo.PortaAvioes -> {
+                TipoNavio.PortaAvioes -> {
                     idPortaAviao.isEnabled = pair.first < pair.second
                     idPortaAviao.text = getString(R.string.porta_aviao, pair.first, pair.second)
                 }
             }
-
         }
-
-
     }
 
     private fun hideBottomSheet() {
@@ -143,12 +140,13 @@ class JogoActivity : AppCompatActivity(), JogoContract.View, JogoAdapter.OnItemC
     }
 
     private fun setupRecyclerView() {
-        this.adapter = JogoAdapter(presenter.tamanhoTabuleiro, this@JogoActivity)
+        val tamanhoTabuleiro: Int = resources.getInteger(R.integer.tamanho_tabuleiro)
+        this.adapter = SetupAdapter(tamanhoTabuleiro, this@SetupActivity)
         with(tabuleiroRecyclerView) {
-            layoutManager = GridLayoutManager(this@JogoActivity, presenter.tamanhoTabuleiro)
+            layoutManager = GridLayoutManager(this@SetupActivity, tamanhoTabuleiro)
             itemAnimator = DefaultItemAnimator()
             setHasFixedSize(true)
-            adapter = this@JogoActivity.adapter
+            adapter = this@SetupActivity.adapter
         }
     }
 
@@ -176,7 +174,6 @@ class JogoActivity : AppCompatActivity(), JogoContract.View, JogoAdapter.OnItemC
     override fun onItemEmptyClick(indiceLinha: Int, indiceColuna: Int) {
         this.indiceLinha = indiceLinha
         this.indiceColuna = indiceColuna
-        updateBottomSheet()
 
         background.visibility = View.VISIBLE
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
@@ -190,13 +187,12 @@ class JogoActivity : AppCompatActivity(), JogoContract.View, JogoAdapter.OnItemC
         Snackbar.make(rootLayout, R.string.tabuleiro_conflito_posicao, Snackbar.LENGTH_LONG).show()
     }
 
-    override fun showLimitError(tipo: Tipo) {
-        Snackbar.make(rootLayout, getString(R.string.tabuleiro_limite_atingido, tipo.name), Snackbar.LENGTH_LONG).show()
+    override fun showLimitError(tipoNavio: TipoNavio) {
+        Snackbar.make(rootLayout, getString(R.string.tabuleiro_limite_atingido, tipoNavio.name), Snackbar.LENGTH_LONG).show()
     }
 
     override fun showNavioPosition(posicoes: List<Posicao>) {
         adapter.addNavio(posicoes)
-
         invalidateOptionsMenu()
     }
 

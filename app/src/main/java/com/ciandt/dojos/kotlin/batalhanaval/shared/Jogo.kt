@@ -1,4 +1,4 @@
-package com.ciandt.dojos.kotlin.batalhanaval.data
+package com.ciandt.dojos.kotlin.batalhanaval.shared
 
 import java.util.*
 
@@ -20,7 +20,7 @@ class Jogo(
         val r = Random();
 
 
-        Tipo.values().forEach {
+        TipoNavio.values().forEach {
             val limite = tabuleiro.limites[it] ?: 0
             var qtdOks = 0
             var posicao : Posicao
