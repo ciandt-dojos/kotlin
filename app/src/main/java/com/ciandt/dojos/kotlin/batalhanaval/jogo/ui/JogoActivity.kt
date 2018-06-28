@@ -6,11 +6,12 @@ import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.GridLayoutManager
 import android.util.Log
 import com.ciandt.dojos.kotlin.batalhanaval.R
-import kotlinx.android.synthetic.main.content_setup.*
+import kotlinx.android.synthetic.main.activity_jogo.*
 
 class JogoActivity : AppCompatActivity(), JogoAdapter.OnItemClickListener {
 
-    private lateinit var adapter: JogoAdapter
+    private lateinit var jogoAdapter: JogoAdapter
+    private lateinit var adversarioAdapter: JogoAdversarioAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,12 +22,20 @@ class JogoActivity : AppCompatActivity(), JogoAdapter.OnItemClickListener {
 
     private fun setupRecyclerView() {
         val tamanhoTabuleiro: Int = resources.getInteger(R.integer.tamanho_tabuleiro)
-        this.adapter = JogoAdapter(tamanhoTabuleiro, this@JogoActivity)
+        this.jogoAdapter = JogoAdapter(tamanhoTabuleiro, this@JogoActivity)
         with(tabuleiroRecyclerView) {
             layoutManager = GridLayoutManager(this@JogoActivity, tamanhoTabuleiro)
             itemAnimator = DefaultItemAnimator()
             setHasFixedSize(true)
-            adapter = this@JogoActivity.adapter
+            adapter = this@JogoActivity.jogoAdapter
+        }
+
+        this.adversarioAdapter = JogoAdversarioAdapter(tamanhoTabuleiro)
+        with(tabuleiroAdversarioRecyclerView) {
+            layoutManager = GridLayoutManager(this@JogoActivity, tamanhoTabuleiro)
+            itemAnimator = DefaultItemAnimator()
+            setHasFixedSize(true)
+            adapter = this@JogoActivity.adversarioAdapter
         }
     }
 

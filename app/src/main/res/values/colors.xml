@@ -8,5 +8,6 @@
     <color name="colorItemTabuleiroNavio">#42434E</color>
     <color name="colorItemTabuleiroNavioAtingido">#EE502C</color>
     <color name="colorItemTabuleiroAgua">#BBC1EA</color>
+    <color name="colorItemAdversarioTabuleiroPadrao">#5765C4</color>
     <color name="branco">#fff</color>
 </resources>
