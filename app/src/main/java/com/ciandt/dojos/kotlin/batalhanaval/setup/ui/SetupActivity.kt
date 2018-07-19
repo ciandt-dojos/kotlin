@@ -56,7 +56,7 @@ class SetupActivity : AppCompatActivity(), SetupContract.View, SetupAdapter.OnIt
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_setup)
-        setSupportActionBar(toolbar)
+//        setSupportActionBar(toolbar)
 
         setupRecyclerView()
         setupBottomSheet()
@@ -79,6 +79,9 @@ class SetupActivity : AppCompatActivity(), SetupContract.View, SetupAdapter.OnIt
 
     private fun setupBottomSheet() {
         bottomSheetBehavior = BottomSheetBehavior.from(menuNavio)
+        tipoNavioRadioGroup.setOnCheckedChangeListener { group, checkedId ->
+            idConfirmar.isEnabled = checkedId > -1
+        }
 
         idConfirmar.setOnClickListener {
             val tipoNavio = when (tipoNavioRadioGroup.checkedRadioButtonId) {
@@ -86,7 +89,7 @@ class SetupActivity : AppCompatActivity(), SetupContract.View, SetupAdapter.OnIt
                 R.id.idSubmarino -> TipoNavio.Submarino
                 R.id.idPortaAviao -> TipoNavio.PortaAvioes
                 R.id.idContraTorpedeiro -> TipoNavio.ContraTorpedeiros
-                else -> throw IllegalStateException("Navio inválido")
+                else ->  throw IllegalStateException("Navio inválido")
             }
 
             val orientacao = when (idOrientacao.checkedRadioButtonId) {
@@ -132,11 +135,13 @@ class SetupActivity : AppCompatActivity(), SetupContract.View, SetupAdapter.OnIt
                 }
             }
         }
+        tipoNavioRadioGroup.clearCheck()
     }
 
     private fun hideBottomSheet() {
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
         background.visibility = View.GONE
+        tipoNavioRadioGroup.clearCheck()
     }
 
     private fun setupRecyclerView() {
